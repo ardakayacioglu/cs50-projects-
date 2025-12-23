@@ -1,23 +1,12 @@
-# Prompt user for filename
-filename <- readline("Enter CSV file: ")
-
-# Read the data
+filename <- readline("CSV file: ")
 data <- read.csv(filename)
 
-# Total number of pit stops
-total_stops <- nrow(data)
-
-# Shortest pit stop
-shortest <- min(data$time)
-
-# Longest pit stop
-longest <- max(data$time)
-
-# Total time spent
+total_pit_stops <- nrow(data)
+shortest_pit_stop <- min(data$time)
+longest_pit_stop <- max(data$time)
 total_time <- sum(data$time)
 
-# Print results
-cat("Total pit stops:", total_stops, "\n")
-cat("Shortest pit stop:", round(shortest, 2), "seconds\n")
-cat("Longest pit stop:", round(longest, 2), "seconds\n")
-cat("Total time spent on pit stops:", round(total_time, 2), "seconds\n")
+cat("Total pit stops:", total_pit_stops, "\n")
+cat("Shortest pit stop:", shortest_pit_stop, "\n")
+cat("Longest pit stop:", longest_pit_stop, "\n")
+cat("Total time:", round(total_time, 2), "\n")

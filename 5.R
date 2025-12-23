@@ -1,10 +1,9 @@
-load("zelda.RData")
+load("air.RData")
 
-zelda <- zelda |>
-  filter(str_detect(producers, ",")) |>
-  group_by(title) |>
-  filter(year == min(year)) |>
+air <- air |>
+  group_by(county) |>
+  slice_max(emissions, n = 1) |>
   ungroup() |>
-  arrange(year, title, system)
+  arrange(desc(emissions))
 
-save(zelda, file = "5.RData")
+save(air, file = "5.RData")

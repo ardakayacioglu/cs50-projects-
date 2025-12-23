@@ -1,11 +1,6 @@
-library(tidyverse)
-load("zelda.RData")
+load("air.RData")
 
-zelda <- zelda |>
-  mutate(system = str_remove(system, "^[-\\s]+")) |>   # baştaki - ve boşlukları sil
-  group_by(title) |>
-  filter(year == min(year)) |>
-  arrange(year, title, system) |>
-  ungroup()
+air <- air |>
+  filter(county == "OR - Multnomah")
 
-save(zelda, file = "3.RData")
+save(air, file = "3.RData")

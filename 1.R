@@ -1,9 +1,17 @@
 library(tidyverse)
 
-zelda <- read_csv("zelda.csv") |>
-  separate(release, into = c("year", "system"), sep = " ", extra = "merge") |>
-  mutate(year = as.integer(year)) |>
-  pivot_wider(names_from = role, values_from = names) |>
-  rename_with(tolower)
+# Veriyi oku ve sütunları seç + yeniden adlandır
+air <- read_csv("air.csv") |>
+  select(
+    state = State,
+    county = `State-County`,
+    pollutant = POLLUTANT,
+    emissions = `Emissions (Tons)`,
+    level_1 = `SCC LEVEL 1`,
+    level_2 = `SCC LEVEL 2`,
+    level_3 = `SCC LEVEL 3`,
+    level_4 = `SCC LEVEL 4`
+  )
 
-save(zelda, file = "zelda.RData")
+# Veriyi kaydet
+save(air, file = "air.RData")

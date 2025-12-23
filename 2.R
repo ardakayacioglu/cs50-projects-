@@ -1,8 +1,6 @@
-load("zelda.RData")
+load("air.RData")
 
-zelda <- zelda |>
-  group_by(year) |>
-  summarize(releases = n()) |>
-  arrange(desc(releases))
+air <- air |>
+  arrange(desc(emissions))
 
-save(zelda, file = "2.RData")
+save(air, file = "2.RData")

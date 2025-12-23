@@ -1,0 +1,10 @@
+1. If songs.db contains the top 100 songs of one listener from 2018, how would you characterize their audio aura?
+- Their audio aura would likely be energetic, positive, and highly danceable because most of the top songs have high energy, valence, and danceability.
+
+2. Why might this way of calculating an aura not be very representative?
+- The top 100 songs might not cover the full variety of their listening habits. It may favor mainstream and energetic songs while missing out on the listener's preference for calm, emotional, or niche songs.
+
+3. Better ways of calculating the aura:
+- Analyze all songs listened to during the year, not just the top 100.
+- Weigh songs based on the number of times they were played.
+- Consider other metrics like genre diversity, lyrics sentiment, and listening time of day.

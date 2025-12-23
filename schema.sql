@@ -1,48 +1,36 @@
-CREATE TABLE users (
+CREATE TABLE ingredients (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    price_per_unit REAL NOT NULL,
+    unit TEXT NOT NULL
+);
+CREATE TABLE donuts (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    is_gluten_free BOOLEAN NOT NULL,
+    price REAL NOT NULL
+);
+CREATE TABLE ingredients_donuts (
+    donut_id INTEGER,
+    ingredient_id INTEGER,
+    FOREIGN KEY (donut_id) REFERENCES donuts(id),
+    FOREIGN KEY (ingredient_id) REFERENCES ingredients(id)
+);
+CREATE TABLE customers (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     first_name TEXT NOT NULL,
-    last_name TEXT NOT NULL,
-    username TEXT NOT NULL UNIQUE,
-    password TEXT NOT NULL
+    last_name TEXT NOT NULL
 );
-CREATE TABLE schools (
+CREATE TABLE orders (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    name TEXT NOT NULL,
-    school_type TEXT NOT NULL,
-    location TEXT NOT NULL,
-    founded_year INTEGER NOT NULL
+    customer_id INTEGER,
+    order_date TEXT NOT NULL,
+    FOREIGN KEY (customer_id) REFERENCES customers(id)
 );
-CREATE TABLE companies (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    name TEXT NOT NULL,
-    industry TEXT NOT NULL,
-    location TEXT NOT NULL
+CREATE TABLE order_items (
+    order_id INTEGER,
+    donut_id INTEGER,
+    quantity INTEGER NOT NULL,
+    FOREIGN KEY (order_id) REFERENCES orders(id),
+    FOREIGN KEY (donut_id) REFERENCES donuts(id)
 );
-CREATE TABLE connections (
-    user1_id INTEGER,
-    user2_id INTEGER,
-    FOREIGN KEY (user1_id) REFERENCES users(id),
-    FOREIGN KEY (user2_id) REFERENCES users(id),
-    PRIMARY KEY (user1_id, user2_id)
-);
-CREATE TABLE school_affiliations (
-    user_id INTEGER,
-    school_id INTEGER,
-    start_date TEXT,
-    end_date TEXT,
-    degree TEXT,
-    FOREIGN KEY (user_id) REFERENCES users(id),
-    FOREIGN KEY (school_id) REFERENCES schools(id),
-    PRIMARY KEY (user_id, school_id)
-);
-CREATE TABLE company_affiliations (
-    user_id INTEGER,
-    company_id INTEGER,
-    start_date TEXT,
-    end_date TEXT,
-    title TEXT,
-    FOREIGN KEY (user_id) REFERENCES users(id),
-    FOREIGN KEY (company_id) REFERENCES companies(id),
-    PRIMARY KEY (user_id, company_id)
-);
-
